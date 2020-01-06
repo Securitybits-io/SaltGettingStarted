@@ -1,0 +1,5 @@
+unsalted:
+  host: 192.168.5.13
+  user: vagrant
+  priv: /root/.ssh/id_rsa.salt
+  sudo: true
