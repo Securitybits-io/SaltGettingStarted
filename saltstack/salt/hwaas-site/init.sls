@@ -13,7 +13,7 @@ git-client-package:
 hwaas-source:
   git.latest:
     - name: https://github.com/floyd-may/hwaas.git
-    - rev: v0.1
+    - rev: master
     - target: /home/hwaas/hwaas-site
     - require:
       - user: hwaas-user
