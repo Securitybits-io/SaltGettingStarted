@@ -31,6 +31,16 @@ update-mine-data-from-new-minion:
     - require:
       - salt: refresh-pillar-on-new-minion
 
+# 4.1 update hwaas online grain
+update-hwaas-online-grain:
+  salt.function:
+    - name: grains.append
+    - arg:
+      - hwaas
+      - online
+    - require:
+      - salt: update-mine-data-from-new-minion
+
 # 5. run state.apply on load balancer
 run-state-apply-on-loadbalancer:
   salt.state:
@@ -38,4 +48,4 @@ run-state-apply-on-loadbalancer:
     - tgt_type: grain
     - sls: load-balance
     - require:
-      - salt: update-mine-data-from-new-minion
+      - salt: update-hwaas-online-grain
