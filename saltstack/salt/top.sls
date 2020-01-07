@@ -3,6 +3,11 @@ base:
     - bashrc
     - requirements
 
-  'prodminion':
+  'roles:hwaas-web':
+    - match: grain
     - nodejs-package
-    - hwaas-site
+    - hwaas-service
+
+  'roles:load-balancing-web':
+    - match: grain
+    - load-balance

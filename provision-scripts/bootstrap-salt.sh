@@ -10,13 +10,15 @@ cp /vagrant/provision-scripts/deploy-file/bashrc /root/.bashrc
 apt-get update
 apt-get install salt-master salt-minion salt-ssh  -y
 cp /vagrant/provision-scripts/deploy-file/master /etc/salt/master
-cp /vagrant/provision-scripts/deploy-file/roster /etc/salt/roster
+#cp /vagrant/provision-scripts/deploy-file/roster /etc/salt/roster
 cp /vagrant/provision-scripts/deploy-file/id_rsa.salt /root/.ssh/id_rsa.salt
 chmod 0700 /root/.ssh/id_rsa.salt
 service salt-master restart
 
+apt-get update
+apt-get install -y salt-minion
 echo "192.168.5.10 salt" | tee -a /etc/hosts
-echo "192.168.5.11 devminion" | tee -a /etc/hosts
-echo "192.168.5.12 prodminion" | tee -a /etc/hosts
-echo "192.168.5.13 unsalted" | tee -a /etc/hosts
-systemctl restart salt-master
+echo "192.168.5.11 web1" | tee -a /etc/hosts
+echo "192.168.5.12 web2" | tee -a /etc/hosts
+echo "192.168.5.13 nginx" | tee -a /etc/hosts
+systemctl restart salt-minion
